@@ -521,8 +521,12 @@ public class MobileController extends SimEntity {
 
 					CloudletScheduler cloudletScheduler = new CloudletSchedulerTimeShared();
 
-					long sizeVm = (MaxAndMin.MIN_VM_SIZE + (long) 
-						((MaxAndMin.MAX_VM_SIZE - MaxAndMin.MIN_VM_SIZE) * (getRand().nextDouble())));
+					long sizeVm =(MaxAndMin.MIN_VM_SIZE + (long) 
+					((MaxAndMin.MAX_VM_SIZE - MaxAndMin.MIN_VM_SIZE) * (getRand().nextDouble())));
+//					long sizeVm =(AppExample.getMinVMSize() + (long) 
+//							((AppExample.getMaxVMSize() - AppExample.getMinVMSize()) * (getRand().nextDouble())));
+					
+					
 					AppModule vmSmartThing = new AppModule(st.getMyId(), "AppModuleVm_"
 						+ st.getName() , "MyApp_vr_game" + st.getMyId()
 						, getBrokerList().get(st.getMyId()).getId(), 2000, 64, 1000

@@ -105,7 +105,8 @@ public class AppExample {
 	static final boolean CLOUD = true;
 	private static long PeriodicTimeUp=1000;
 	private static long PeriodicTimeDown=2439;
-	private static long VmSizeVar=128;
+	private static long MaxVMSizeVar=128;
+	private static long MinVMSizeVar=128;
 	
 	static final int numOfDepts = 1;
 	static final int numOfMobilesPerDept = 4;
@@ -191,8 +192,9 @@ public class AppExample {
 
 		setPeriodicTimeUp(Long.parseLong( args[10]));
 		setPeriodicTimeDown(Long.parseLong( args[11]));
-
-		setVmSize(Long.parseLong( args[12]));
+		
+		setMinVMSize(Long.parseLong( args[12]));
+		setMaxVMSize(Long.parseLong( args[13]));
 		
 		
 		/**
@@ -286,7 +288,7 @@ public class AppExample {
 		for (MobileDevice st : getSmartThings()) {
 			if (st.getSourceAp() != null) {
 				CloudletScheduler cloudletScheduler = new TupleScheduler(500, 1); 
-				long sizeVm = getVmSize();
+				long sizeVm = getMinVMSize();
 				AppModule vmSmartThingTest = new AppModule(st.getMyId() // id
 					, "AppModuleVm_" + st.getName() // name
 					, "MyApp_vr_game" + st.getMyId() // appId
@@ -1440,12 +1442,25 @@ public class AppExample {
 		AppExample.PeriodicTimeDown = PeriodicTime;
 	}
 
-	public static long getVmSize() {
-		return VmSizeVar;
+	public static long getMaxVMSize() {
+		//return MaxVMSizeVar;
+		return MaxAndMin.MAX_VM_SIZE;
 	}
 
-	public static void setVmSize(long VmSize) {
-		AppExample.VmSizeVar = VmSize;
+	public static void setMaxVMSize(long VmSize) {
+		MaxAndMin.MAX_VM_SIZE=(int)VmSize;
+		
+		AppExample.MaxVMSizeVar = VmSize;
+	}
+
+	public static long getMinVMSize() {
+		//return MinVMSizeVar;
+		return MaxAndMin.MAX_VM_SIZE;
+	}
+
+	public static void setMinVMSize(long VmSize) {
+		MaxAndMin.MAX_VM_SIZE=(int)VmSize;
+		AppExample.MinVMSizeVar = VmSize;
 	}
 
 }
