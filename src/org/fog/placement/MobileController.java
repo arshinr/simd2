@@ -1649,6 +1649,10 @@ public class MobileController extends SimEntity {
 		 * MyStatistics.getInstance().getMyCountTotalTuple(), resultFileName);
 		 */
 		
+
+		header +=AppExample.getSimulationParamsName() + ";";
+		record += AppExample.getSimulationParams() + ";";
+		
 		
 		boolean rtn= read_Result_V2("result_V2_CSV.csv");
 		

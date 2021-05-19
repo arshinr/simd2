@@ -919,12 +919,28 @@ public class FogDevice extends PowerDatacenter {
 					smartThing.getMigTime());
 			}
 			else if (smartThing.getMigrationTechnique() instanceof LiveMigration) {
+				
 				MyStatistics.getInstance().historyDowntime(smartThing.getMyId(),
 					smartThing.getMigTime() * 0.15);
 			}
 			else if (smartThing.getMigrationTechnique() instanceof LiveMigrationPrecopy) {
+				
+				double overload;
+				double x =AppExample.getRand().nextDouble()% 0.005;
+				int y =(int)(AppExample.getRand().nextDouble()*100.0) % 2;
+				
+				if (y==0) {
+					y=1;
+				}else
+				{
+					y=-1;
+				}
+				
+				overload=0.05+ (x* (double)y);
+				
 				MyStatistics.getInstance().historyDowntime(smartThing.getMyId(),
-					smartThing.getMigTime() * 0.05);
+					smartThing.getMigTime() * overload);
+				
 			}
 			else if (smartThing.getMigrationTechnique() instanceof LiveMigrationMirror) {
 				MyStatistics.getInstance().historyDowntime(smartThing.getMyId(),
@@ -1067,6 +1083,19 @@ public class FogDevice extends PowerDatacenter {
 			Distances.checkDistance(st.getCoord(), st.getSourceAp().getCoord())
 			+ " Migration time: " + st.getMigTime());
 		
+		
+		
+		double x ;
+		int y =(int)(AppExample.getRand().nextDouble()*100.0) % 2;
+		
+		if (y==0) {
+			y=1;
+		}else
+		{
+			y=-1;
+		}
+		
+		
 		double Overload =1;
 
 		String policyName;
@@ -1082,11 +1111,17 @@ public class FogDevice extends PowerDatacenter {
 			break;
 		case 3 :
 			policyName="LIVE_MIGRATION_PRECOPY";
-			Overload=1.05;
+			x=AppExample.getRand().nextDouble()% 0.011;
+			
+			
+			Overload=1.05 + (x* (double)y);;
 			break;	
 		case 4 :
 			policyName="LIVE_MIGRATION_MIRROR";
-			Overload=1.35;
+			x=AppExample.getRand().nextDouble()% 0.11;
+			
+			
+			Overload=1.35 + (x* (double)y);;
 			break;	
 		default:
 			policyName="Not Set";

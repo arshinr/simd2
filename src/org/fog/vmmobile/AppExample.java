@@ -107,6 +107,8 @@ public class AppExample {
 	private static long PeriodicTimeDown=2439;
 	private static long MaxVMSizeVar=128;
 	private static long MinVMSizeVar=128;
+	private static String SimulationParams="";
+	private static String SimulationParamsName="";
 	
 	static final int numOfDepts = 1;
 	static final int numOfMobilesPerDept = 4;
@@ -158,10 +160,18 @@ public class AppExample {
 		boolean traceFlag = false; // mean trace events
 		CloudSim.init(numUser, calendar, traceFlag);
 
+		
+		SimulationParamsName="setMigrationAble,setSeed,setMigPointPolicy,setMigStrategyPolicy,"
+				+ "setMaxSmartThings,setMaxBandwidth,setPolicyReplicaVM,setTravelPredicTimeForST,"
+				+ "setMobilityPredictionError,setLatencyBetweenCloudlets,setPeriodicTimeUp,"
+				+ "setPeriodicTimeDown,setMinVMSize,setMaxVMSize";
+		
+		setSimulationParams(args);
+		
 		setPositionApPolicy(Policies.FIXED_AP_LOCATION);
 		setPositionScPolicy(Policies.FIXED_SC_LOCATION);
 		setSeed(Integer.parseInt(args[1]));
-
+		 
 		setStepPolicy(1);
 		if (Integer.parseInt(args[0]) == 0) {
 			setMigrationAble(false);
@@ -1462,5 +1472,25 @@ public class AppExample {
 		MaxAndMin.MAX_VM_SIZE=(int)VmSize;
 		AppExample.MinVMSizeVar = VmSize;
 	}
+	
 
+	public static String getSimulationParams() {
+		return SimulationParams;
+	}
+
+	public static void setSimulationParams(String[] SimulationParams) {
+		
+		
+		for(String s : SimulationParams) {
+			AppExample.SimulationParams += s + " ";
+		}
+		
+	}
+
+
+	public static String getSimulationParamsName() {
+		return SimulationParamsName;
+	}
+	
+	
 }
