@@ -6,14 +6,14 @@ mkdir -p out/migrror
 
 MinNumberOfSmartthings=7
 MaxNumberOfSmartthings=10
-#getPeriodicTimeUp=1000
-#getPeriodicTimeDown=2439
-#VMSizeMin=128
-#VMSizeMax=128
-getPeriodicTimeUp=2000
-getPeriodicTimeDown=4878
+getPeriodicTimeUp=1000
+getPeriodicTimeDown=2439
 VMSizeMin=128
 VMSizeMax=128
+#getPeriodicTimeUp=2000
+#getPeriodicTimeDown=4878
+#VMSizeMin=128
+#VMSizeMax=128
 
 
 
