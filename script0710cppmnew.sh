@@ -4,7 +4,7 @@ mkdir -p out/post
 mkdir -p out/pre 
 mkdir -p out/migrror
 
-MinNumberOfSmartthings=7
+MinNumberOfSmartthings=8
 MaxNumberOfSmartthings=10
 getPeriodicTimeUp=1000
 getPeriodicTimeDown=2439
