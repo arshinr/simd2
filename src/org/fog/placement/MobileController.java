@@ -1249,6 +1249,44 @@ public class MobileController extends SimEntity {
 		record += AppExample.getMaxSmartThings() + ";";
 		
 		
+		
+		
+		
+		
+		
+			header +="EXECUTION TIME" + ";";
+			record +=String.valueOf(
+					(Calendar.getInstance().getTimeInMillis() - TimeKeeper.getInstance()
+							.getSimulationStartTime())
+					) + ";";
+			//"=========================================");
+			//"APPLICATION LOOP DELAYS");
+			//"=========================================");
+			double mediaLatencia = 0.0;
+			double mediaLatenciaMax = 0.0;
+			for (Integer loopId : TimeKeeper.getInstance().getLoopIdToTupleIds().keySet()) {
+				
+				
+				mediaLatencia += TimeKeeper.getInstance().getLoopIdToCurrentAverage().get(loopId);
+				mediaLatenciaMax += TimeKeeper.getInstance().getMaxLoopExecutionTime().get(loopId);
+			}
+			
+			header +="AverageLoopIdToCurrentAverage(TupleDelay)" + ";";
+			record +=String.valueOf(mediaLatencia
+					/ TimeKeeper.getInstance().getLoopIdToCurrentAverage().keySet().size()) + ";";
+			
+			
+			header +="AverageMaxLoopExecutionTime(MaxTupleDelay)" + ";";
+			record +=String.valueOf(mediaLatenciaMax
+					/ TimeKeeper.getInstance().getMaxLoopExecutionTime().keySet().size()) + ";";
+			
+			//"=========================================");
+			//"TUPLE CPU EXECUTION DELAY");
+			//"=========================================";
+		
+		
+		
+		
 		/*
 		 * printResults("PolicyReplicaVM Mode;" + policyName, resultFileName);
 		 */
