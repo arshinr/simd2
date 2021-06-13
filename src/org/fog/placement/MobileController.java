@@ -432,6 +432,32 @@ public class MobileController extends SimEntity {
 											+ delayProcess, MobileEvents.SET_MIG_STATUS_TRUE, st);
 									}
 								}
+								if (st.isPostCopy_JustHandOFFStatus() && !st.isMigStatus()) {
+									if (!st.isMigStatusLive()) {
+										st.setMigStatusLive(true);
+										double newMigTime = migrationTimeToLiveMigration(st);
+										if (newMigTime == 0) {
+											newMigTime = ((st.getVmMobileDevice().getHost()
+												.getRamProvisioner().getUsedRam() * 8 * 1024 * 1024) / st
+												.getVmLocalServerCloudlet().getUplinkBandwidth()) * 1000.0;
+										}
+										double delayProcess = st.getVmLocalServerCloudlet()
+											.getCharacteristics().getCpuTime((st.getVmMobileDevice()
+												.getSize() * 1024 * 1024 * 8) * 0.7, 0.0);// the connection already opened
+										st.setTimeFinishDeliveryVm(-1.0);
+										MyStatistics.getInstance().startWithoutVmTime(
+											st.getMyId(),CloudSim.clock());
+										//send(st.getVmLocalServerCloudlet().getId(), newMigTime
+										//+ delayProcess, MobileEvents.SET_MIG_STATUS_TRUE, st);
+
+										send(st.getVmLocalServerCloudlet().getId(), (newMigTime/5.5)
+											+ delayProcess, MobileEvents.SET_MIG_STATUS_TRUE, st);
+										
+										
+										st.sethandoffTime((handoffTime + delayConnection)*3);
+										
+									}
+								}
 								
 								if (st.isPreCopyStatus() && !st.isMigStatus()) {
 									if (!st.isMigStatusLive()) {
@@ -913,6 +939,9 @@ public class MobileController extends SimEntity {
 		case 2 :
 			policyName="LIVE_MIGRATION_POSTCOPY";
 			break;
+		case 5 :
+			policyName="LIVE_MIGRATION_POSTCOPY_JustHandOFF";
+			break;
 		case 3 :
 			policyName="LIVE_MIGRATION_PRECOPY";
 			break;	
@@ -1229,6 +1258,9 @@ public class MobileController extends SimEntity {
 			break;
 		case 2 :
 			policyName="LIVE_MIGRATION_POSTCOPY";
+			break;
+		case 5 :
+			policyName="LIVE_MIGRATION_POSTCOPY_JustHandOFF";
 			break;
 		case 3 :
 			policyName="LIVE_MIGRATION_PRECOPY";

@@ -65,6 +65,7 @@ import org.fog.vmmigration.DecisionMigration;
 import org.fog.vmmigration.LiveMigration;
 import org.fog.vmmigration.LiveMigrationMirror;
 import org.fog.vmmigration.LiveMigrationPrecopy;
+import org.fog.vmmigration.LiveMigration_JustHandOFF;
 import org.fog.vmmigration.LowestDistBwSmartThingAP;
 import org.fog.vmmigration.LowestDistBwSmartThingServerCloudlet;
 import org.fog.vmmigration.LowestLatency;
@@ -696,6 +697,8 @@ public class AppExample {
 			migrationTechnique = new ContainerVM(getMigPointPolicy());
 		} else if (getPolicyReplicaVM() == Policies.LIVE_MIGRATION) {
 			migrationTechnique = new LiveMigration(getMigPointPolicy());
+		} else if (getPolicyReplicaVM() == Policies.LIVE_MIGRATION_JustHandOFF) {
+			migrationTechnique = new LiveMigration_JustHandOFF(getMigPointPolicy());
 		} else if (getPolicyReplicaVM() == Policies.LIVE_MIGRATION_PRECOPY) {
 			migrationTechnique = new LiveMigrationPrecopy(getMigPointPolicy());
 		} else if (getPolicyReplicaVM() == Policies.LIVE_MIGRATION_MIRROR) {
@@ -822,6 +825,8 @@ public class AppExample {
 			beforeMigration = new PrepareContainerVM();
 		} else if (getPolicyReplicaVM() == Policies.LIVE_MIGRATION) {
 			beforeMigration = new PrepareLiveMigration();
+		} else if (getPolicyReplicaVM() == Policies.LIVE_MIGRATION_JustHandOFF) {
+			beforeMigration = new PrepareLiveMigration();
 		}else if (getPolicyReplicaVM() == Policies.LIVE_MIGRATION_PRECOPY) {
 			beforeMigration = new PrepareLiveMigration();
 		}else if (getPolicyReplicaVM() == Policies.LIVE_MIGRATION_MIRROR) {
@@ -930,6 +935,8 @@ public class AppExample {
 				} else if (getPolicyReplicaVM() == Policies.MIGRATION_CONTAINER_VM) {
 					beforeMigration = new PrepareContainerVM();
 				} else if (getPolicyReplicaVM() == Policies.LIVE_MIGRATION) {
+					beforeMigration = new PrepareLiveMigration();
+				} else if (getPolicyReplicaVM() == Policies.LIVE_MIGRATION_JustHandOFF) {
 					beforeMigration = new PrepareLiveMigration();
 				} else if (getPolicyReplicaVM() == Policies.LIVE_MIGRATION_PRECOPY) {
 					beforeMigration = new PrepareLiveMigration();

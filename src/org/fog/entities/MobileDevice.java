@@ -49,6 +49,8 @@ public class MobileDevice extends FogDevice {
 	private float maxServiceValue;
 	private boolean migStatus;
 	private boolean postCopyStatus;
+	private boolean postCopyStatus_JustHandOFF;
+	
 	private boolean preCopyStatus;
 	private boolean mirrorStatus;
 	private boolean handoffStatus;
@@ -109,6 +111,7 @@ public class MobileDevice extends FogDevice {
 		setMigStatus(false);
 		setMigStatusLive(false);
 		setPostCopyStatus(false);
+		setPostCopy_JustHandOFFStatus(false);
 		setPreCopyStatus(false);
 		setMirrorStatus(false);
 		setHandoffStatus(false);
@@ -140,6 +143,7 @@ public class MobileDevice extends FogDevice {
 		setMigStatus(false);
 		setMigStatusLive(false);
 		setPostCopyStatus(false);
+		setPostCopy_JustHandOFFStatus(false);
 		setPreCopyStatus(false);
 		setMirrorStatus(false);
 
@@ -181,6 +185,7 @@ public class MobileDevice extends FogDevice {
 		setMigStatus(false);
 		setMigStatusLive(false);
 		setPostCopyStatus(false);
+		setPostCopy_JustHandOFFStatus(false);
 		setPreCopyStatus(false);
 		setMirrorStatus(false);
 		setVmSize(vmSize);
@@ -649,6 +654,14 @@ public class MobileDevice extends FogDevice {
 		this.postCopyStatus = postCopyStatus;
 	}
 
+	public boolean isPostCopy_JustHandOFFStatus() {
+		return postCopyStatus_JustHandOFF;
+	}
+
+	public void setPostCopy_JustHandOFFStatus(boolean postCopyStatus) {
+		this.postCopyStatus_JustHandOFF = postCopyStatus;
+	}
+	
 	public boolean isPreCopyStatus() {
 		return preCopyStatus;
 	}

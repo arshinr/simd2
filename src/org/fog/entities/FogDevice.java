@@ -55,6 +55,7 @@ import org.fog.vmmigration.DecisionMigration;
 import org.fog.vmmigration.LiveMigration;
 import org.fog.vmmigration.LiveMigrationMirror;
 import org.fog.vmmigration.LiveMigrationPrecopy;
+import org.fog.vmmigration.LiveMigration_JustHandOFF;
 import org.fog.vmmigration.MyStatistics;
 import org.fog.vmmigration.Service;
 import org.fog.vmmobile.AppExample;
@@ -713,6 +714,7 @@ public class FogDevice extends PowerDatacenter {
 		else {
 			smartThing.setMigStatus(false);
 			smartThing.setPostCopyStatus(false);
+			smartThing.setPostCopy_JustHandOFFStatus(false);
 			smartThing.setPreCopyStatus(false);
 			smartThing.setMirrorStatus(false);
 			smartThing.setMigStatusLive(false);
@@ -748,6 +750,7 @@ public class FogDevice extends PowerDatacenter {
 		MyStatistics.getInstance().getInitialTimeWithoutConnection().remove(smartThing.getMyId());
 		smartThing.setMigStatus(false);
 		smartThing.setPostCopyStatus(false);
+		smartThing.setPostCopy_JustHandOFFStatus(false);
 		smartThing.setPreCopyStatus(false);
 		smartThing.setMirrorStatus(false);
 		smartThing.setMigStatusLive(false);
@@ -871,6 +874,7 @@ public class FogDevice extends PowerDatacenter {
 			if (MyStatistics.getInstance().getInitialTimeDelayAfterNewConnection()
 				.containsKey(smartThing.getMyId())) {
 				smartThing.setMigStatus(false);
+				smartThing.setPostCopy_JustHandOFFStatus(false);
 				smartThing.setPostCopyStatus(false);
 				smartThing.setPreCopyStatus(false);
 				smartThing.setMirrorStatus(false);
@@ -923,6 +927,11 @@ public class FogDevice extends PowerDatacenter {
 				MyStatistics.getInstance().historyDowntime(smartThing.getMyId(),
 					smartThing.getMigTime() * 0.15);
 			}
+			else if (smartThing.getMigrationTechnique() instanceof LiveMigration_JustHandOFF) {
+				
+				MyStatistics.getInstance().historyDowntime(smartThing.getMyId(),
+					smartThing.getMigTime() * 0.15);
+			}
 			else if (smartThing.getMigrationTechnique() instanceof LiveMigrationPrecopy) {
 				
 				double overload;
@@ -948,6 +957,10 @@ public class FogDevice extends PowerDatacenter {
 			}
 			
 			smartThing.setTimeFinishDeliveryVm(CloudSim.clock());
+			
+
+			
+			
 		}
 		else {
 			LogMobile.debug("FogDevice.java", smartThing.getName()
@@ -978,6 +991,10 @@ public class FogDevice extends PowerDatacenter {
 				if (delayProcess >= 0) {
 					if (getPolicyReplicaVM() == Policies.LIVE_MIGRATION) {
 						smartThing.setPostCopyStatus(true);
+						smartThing.setTimeStartLiveMigration(CloudSim.clock());
+					}
+					else if (getPolicyReplicaVM() == Policies.LIVE_MIGRATION_JustHandOFF) {
+						smartThing.setPostCopy_JustHandOFFStatus(true);
 						smartThing.setTimeStartLiveMigration(CloudSim.clock());
 					}
 					else if (getPolicyReplicaVM() == Policies.LIVE_MIGRATION_PRECOPY) {
@@ -1108,6 +1125,9 @@ public class FogDevice extends PowerDatacenter {
 			break;
 		case 2 :
 			policyName="LIVE_MIGRATION_POSTCOPY";
+			break;
+		case 5 :
+			policyName="LIVE_MIGRATION_POSTCOPY_JustHandOFF";
 			break;
 		case 3 :
 			policyName="LIVE_MIGRATION_PRECOPY";

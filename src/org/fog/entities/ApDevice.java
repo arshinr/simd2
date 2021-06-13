@@ -85,6 +85,7 @@ public class ApDevice extends FogDevice {
 				+ smartThing.getId());
 			smartThing.setMigStatus(false);
 			smartThing.setPostCopyStatus(false);
+			smartThing.setPostCopy_JustHandOFFStatus(false);			
 			smartThing.setPreCopyStatus(false);
 			smartThing.setMirrorStatus(false);
 			smartThing.setMigStatusLive(false);
