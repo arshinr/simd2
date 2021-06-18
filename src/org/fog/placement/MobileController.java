@@ -450,11 +450,11 @@ public class MobileController extends SimEntity {
 										//send(st.getVmLocalServerCloudlet().getId(), newMigTime
 										//+ delayProcess, MobileEvents.SET_MIG_STATUS_TRUE, st);
 
-										send(st.getVmLocalServerCloudlet().getId(), (newMigTime/5.5)
+										send(st.getVmLocalServerCloudlet().getId(), (newMigTime*1.05)
 											+ delayProcess, MobileEvents.SET_MIG_STATUS_TRUE, st);
 										
 										
-										st.sethandoffTime((handoffTime + delayConnection)*3);
+										st.sethandoffTime((handoffTime + delayConnection)*2.5);
 										
 									}
 								}

@@ -929,8 +929,10 @@ public class FogDevice extends PowerDatacenter {
 			}
 			else if (smartThing.getMigrationTechnique() instanceof LiveMigration_JustHandOFF) {
 				
+				//MyStatistics.getInstance().historyDowntime(smartThing.getMyId(),
+				//	smartThing.getMigTime() * 0.15);
 				MyStatistics.getInstance().historyDowntime(smartThing.getMyId(),
-					smartThing.getMigTime() * 0.15);
+						smartThing.gethandoffTime());
 			}
 			else if (smartThing.getMigrationTechnique() instanceof LiveMigrationPrecopy) {
 				
