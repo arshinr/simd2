@@ -454,7 +454,20 @@ public class MobileController extends SimEntity {
 											+ delayProcess, MobileEvents.SET_MIG_STATUS_TRUE, st);
 										
 										
-										st.sethandoffTime((handoffTime + delayConnection)*2.5);
+										
+										double overload;
+										double x =AppExample.getRand().nextDouble()% 0.11;
+										int y =(int)(AppExample.getRand().nextDouble()*100.0) % 2;
+										
+										if (y==0) {
+											y=1;
+										}else
+										{
+											y=-1;
+										}
+										
+										overload=2.7+ (x* (double)y);
+										st.sethandoffTime((handoffTime + delayConnection)*overload);
 										
 									}
 								}

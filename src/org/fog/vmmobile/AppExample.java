@@ -1070,6 +1070,11 @@ public class AppExample {
 		case 2 :
 			policyName="LIVE_MIGRATION_POSTCOPY";
 			break;
+		case 5 :
+			policyName="LIVE_MIGRATION_POSTCOPY_JustHandOFF";
+			PeriodicTimeUp=(long)((double)PeriodicTimeUp*1.1);
+			PeriodicTimeDown=(long)((double)PeriodicTimeDown*1.1);
+			break; 
 		case 3 :
 			policyName="LIVE_MIGRATION_PRECOPY";
 			break;	

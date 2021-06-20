@@ -3,6 +3,7 @@ package org.fog.vmmigration;
 import org.cloudbus.cloudsim.NetworkTopology;
 import org.fog.entities.MobileDevice;
 import org.fog.localization.Distances;
+import org.fog.vmmobile.AppExample;
 import org.fog.vmmobile.constants.Directions;
 import org.fog.vmmobile.constants.MaxAndMin;
 import org.fog.vmmobile.constants.Policies;
@@ -33,6 +34,21 @@ public class LiveMigration_JustHandOFF implements VmMigrationTechnique {
 
 	@Override
 	public boolean migPointPolicyFunction(int policy, MobileDevice smartThing) {
+		
+		double overload;
+		double x =AppExample.getRand().nextDouble()% 0.11;
+		int y =(int)(AppExample.getRand().nextDouble()*100.0) % 2;
+		
+		if (y==0) {
+			y=1;
+		}else
+		{
+			y=-1;
+		}
+		
+		overload=1.3+ (x* (double)y);
+		
+		
 		double distance = Distances.checkDistance(smartThing.getSourceAp().getCoord(),
 			smartThing.getCoord());
 		double bandwidth = smartThing.getVmLocalServerCloudlet().getUplinkBandwidth();
