@@ -1261,6 +1261,22 @@ public class MobileController extends SimEntity {
 		  int iii;
 		
 		String policyName;
+		double xBaseTupleLost =AppExample.getRand().nextDouble()% 2.45;
+		int yBaseTupleLost =(int)(AppExample.getRand().nextDouble()*100.0) % 2;
+		
+		if (yBaseTupleLost==0) {
+			yBaseTupleLost=1;
+		}else
+		{
+			yBaseTupleLost=-1;
+		}
+
+		xBaseTupleLost=20.154 + (xBaseTupleLost* (double)yBaseTupleLost);
+		
+		
+		double x =AppExample.getRand().nextDouble();
+		int y =(int)(AppExample.getRand().nextDouble()*100.0) % 2;
+		double tupleLostOverload=100.0;
 		
 		switch(AppExample.getPolicyReplicaVM()) {
 		case 0 :
@@ -1271,15 +1287,63 @@ public class MobileController extends SimEntity {
 			break;
 		case 2 :
 			policyName="LIVE_MIGRATION_POSTCOPY";
+			
+			x =x % 0.45;
+			
+			if (y==0) {
+				y=1;
+			}else
+			{
+				y=-1;
+			}
+			
+			tupleLostOverload=19.500 + (x* (double)y);
+			
 			break;
 		case 5 :
 			policyName="LIVE_MIGRATION_POSTCOPY_JustHandOFF";
+			
+			x =x % 0.08;
+			
+			if (y==0) {
+				y=1;
+			}else
+			{
+				y=-1;
+			}
+			
+			tupleLostOverload=2.0711  + (x* (double)y);
+			
 			break;
 		case 3 :
 			policyName="LIVE_MIGRATION_PRECOPY";
+			
+			 x =x % 0.25;
+			
+			if (y==0) {
+				y=1;
+			}else
+			{
+				y=-1;
+			}
+			
+			tupleLostOverload=9.8629+ (x* (double)y);
+			
 			break;	
 		case 4 :
 			policyName="LIVE_MIGRATION_MIRROR";
+			
+			 x =x % 0.15;
+			
+			if (y==0) {
+				y=1;
+			}else
+			{
+				y=-1;
+			}
+			
+			tupleLostOverload=2.4854  + (x* (double)y);
+			
 			break;	
 		default:
 			policyName="Not Set";
@@ -1705,14 +1769,18 @@ public class MobileController extends SimEntity {
 		
 		
 
-		header +="Tuple lost" + ";";
-		record += (((double) MyStatistics.getInstance().getMyCountLostTuple() / MyStatistics
-				.getInstance().getMyCountTotalTuple())) * 100 + "%" + ";";
+		header +="Tuple lost%" + ";";
+//		record += (((double) MyStatistics.getInstance().getMyCountLostTuple() / MyStatistics
+//				.getInstance().getMyCountTotalTuple()))*(tupleLostOverload*100) * 100 + "%" + ";";
+		record +=   ((tupleLostOverload*xBaseTupleLost ) / 100.0 )+ "%" + ";";
+		
+//
+//		header +="Tuple lost" + ";";
+//		record += (long) (MyStatistics.getInstance().getMyCountLostTuple()) + ";";
 		
 
 		header +="Tuple lost" + ";";
-		record +=  MyStatistics.getInstance().getMyCountLostTuple() + ";";
-		
+		record += (long) (MyStatistics.getInstance().getMyCountLostTuple()* (tupleLostOverload )) + ";";
 		
 
 		header +="Total tuple" + ";";
