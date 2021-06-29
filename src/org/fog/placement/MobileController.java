@@ -1312,7 +1312,7 @@ public class MobileController extends SimEntity {
 				y=-1;
 			}
 			
-			tupleLostOverload=2.0711  + (x* (double)y);
+			tupleLostOverload=10.7711  + (x* (double)y);
 			
 			break;
 		case 3 :
