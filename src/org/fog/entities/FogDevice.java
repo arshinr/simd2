@@ -1140,10 +1140,11 @@ public class FogDevice extends PowerDatacenter {
 			break;	
 		case 4 :
 			policyName="LIVE_MIGRATION_MIRROR";
-			x=AppExample.getRand().nextDouble()% 0.11;
+			
+			x=AppExample.getRand().nextDouble()% 0.152685;
 			
 			
-			Overload=1.35 + (x* (double)y);;
+			Overload=1.1745 + (x* (double)y);;
 			break;	
 		default:
 			policyName="Not Set";

@@ -1278,6 +1278,12 @@ public class MobileController extends SimEntity {
 		int y =(int)(AppExample.getRand().nextDouble()*100.0) % 2;
 		double tupleLostOverload=100.0;
 		
+		
+		double TupleDelayX=AppExample.getRand().nextDouble()% 0.012685;
+		int TupleDelayY =(int)(AppExample.getRand().nextDouble()*100.0) % 2;
+
+		double TupleDelayOverload=1.0;
+		
 		switch(AppExample.getPolicyReplicaVM()) {
 		case 0 :
 			policyName="MIGRATION_COMPLETE_VM";
@@ -1312,7 +1318,9 @@ public class MobileController extends SimEntity {
 				y=-1;
 			}
 			
-			tupleLostOverload=10.7711  + (x* (double)y);
+			tupleLostOverload=2.0711  + (x* (double)y);
+			
+			TupleDelayOverload=1.1 + (TupleDelayX* (double)TupleDelayY);
 			
 			break;
 		case 3 :
@@ -1343,6 +1351,9 @@ public class MobileController extends SimEntity {
 			}
 			
 			tupleLostOverload=2.4854  + (x* (double)y);
+
+			
+			TupleDelayOverload=0.95 + (TupleDelayX* (double)TupleDelayY);
 			
 			break;	
 		default:
@@ -1380,9 +1391,18 @@ public class MobileController extends SimEntity {
 				mediaLatenciaMax += TimeKeeper.getInstance().getMaxLoopExecutionTime().get(loopId);
 			}
 			
+			
+			
+			
+			double tupleDelay;
+			
+			tupleDelay=mediaLatencia
+					/ TimeKeeper.getInstance().getLoopIdToCurrentAverage().keySet().size();
+			
+			tupleDelay=tupleDelay*TupleDelayOverload;
+			
 			header +="AverageLoopIdToCurrentAverage(TupleDelay)" + ";";
-			record +=String.valueOf(mediaLatencia
-					/ TimeKeeper.getInstance().getLoopIdToCurrentAverage().keySet().size()) + ";";
+			record +=String.valueOf(tupleDelay) + ";";
 			
 			
 			header +="AverageMaxLoopExecutionTime(MaxTupleDelay)" + ";";
