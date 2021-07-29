@@ -69,6 +69,8 @@ import org.fog.vmmigration.LiveMigration_JustHandOFF;
 import org.fog.vmmigration.LowestDistBwSmartThingAP;
 import org.fog.vmmigration.LowestDistBwSmartThingServerCloudlet;
 import org.fog.vmmigration.LowestLatency;
+import org.fog.vmmigration.MigrationHybrid_MIRROR_Post;
+import org.fog.vmmigration.MigrationHybrid_Pre_Post;
 import org.fog.vmmigration.MyStatistics;
 import org.fog.vmmigration.PrepareCompleteVM;
 import org.fog.vmmigration.PrepareContainerVM;
@@ -703,6 +705,10 @@ public class AppExample {
 			migrationTechnique = new LiveMigrationPrecopy(getMigPointPolicy());
 		} else if (getPolicyReplicaVM() == Policies.LIVE_MIGRATION_MIRROR) {
 			migrationTechnique = new LiveMigrationMirror(getMigPointPolicy());
+		} else if (getPolicyReplicaVM() == Policies.Hybrid_Pre_Post) {
+			migrationTechnique = new MigrationHybrid_Pre_Post(getMigPointPolicy());
+		} else if (getPolicyReplicaVM() == Policies.Hybrid_MIRROR_Post) {
+			migrationTechnique = new MigrationHybrid_MIRROR_Post(getMigPointPolicy());
 		}
 
 		DeterministicDistribution distribution0 = new DeterministicDistribution(
@@ -831,6 +837,10 @@ public class AppExample {
 			beforeMigration = new PrepareLiveMigration();
 		}else if (getPolicyReplicaVM() == Policies.LIVE_MIGRATION_MIRROR) {
 			beforeMigration = new PrepareLiveMigration();
+		}else if (getPolicyReplicaVM() == Policies.Hybrid_Pre_Post) {
+			beforeMigration = new PrepareLiveMigration();			
+		}else if (getPolicyReplicaVM() == Policies.Hybrid_MIRROR_Post) {
+			beforeMigration = new PrepareLiveMigration();			
 		}
 
 		FogLinearPowerModel powerModel = new FogLinearPowerModel(107.339d, 83.433d);
@@ -942,8 +952,12 @@ public class AppExample {
 					beforeMigration = new PrepareLiveMigration();
 				} else if (getPolicyReplicaVM() == Policies.LIVE_MIGRATION_MIRROR) {
 					beforeMigration = new PrepareLiveMigration();
+				} else if (getPolicyReplicaVM() == Policies.Hybrid_Pre_Post) {
+					beforeMigration = new PrepareLiveMigration();
+				} else if (getPolicyReplicaVM() == Policies.Hybrid_MIRROR_Post) {
+					beforeMigration = new PrepareLiveMigration();
 				}
-
+				
 				FogLinearPowerModel powerModel = new FogLinearPowerModel(107.339d, 83.433d);
 
 				// CloudSim Pe (Processing Element) class represents CPU unit,
@@ -1082,7 +1096,14 @@ public class AppExample {
 			policyName="LIVE_MIGRATION_MIRROR";
 			PeriodicTimeUp=(long)((double)PeriodicTimeUp*0.8);
 			PeriodicTimeDown=(long)((double)PeriodicTimeDown*0.8);
-			break;	
+			break;
+		case 6 :
+			policyName="Hybrid_Pre_Post";
+			break;
+		case 7 :
+			policyName="Hybrid_MIRROR_Post";
+			break;
+			
 		default:
 			policyName="Not Set";
 			break;	

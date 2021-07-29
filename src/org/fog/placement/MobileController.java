@@ -514,6 +514,56 @@ public class MobileController extends SimEntity {
 										st.sethandoffTime((handoffTime + delayConnection)*3);
 									}
 								}
+								
+								//Hybrid_Pre_Post
+								
+								if (st.isHybrid_Pre_PostStatus() && !st.isMigStatus()) {
+									if (!st.isMigStatusLive()) {
+										st.setMigStatusLive(true);
+										double newMigTime = migrationTimeToLiveMigration(st);
+										if (newMigTime == 0) {
+											newMigTime = ((st.getVmMobileDevice().getHost()
+												.getRamProvisioner().getUsedRam() * 8 * 1024 * 1024) / st
+												.getVmLocalServerCloudlet().getUplinkBandwidth()) * 1000.0;
+										}
+										double delayProcess = st.getVmLocalServerCloudlet()
+											.getCharacteristics().getCpuTime((st.getVmMobileDevice()
+												.getSize() * 1024 * 1024 * 8) * 0.7, 0.0);// the connection already opened
+										st.setTimeFinishDeliveryVm(-1.0);
+										MyStatistics.getInstance().startWithoutVmTime(
+											st.getMyId(),CloudSim.clock());
+										send(st.getVmLocalServerCloudlet().getId(), (newMigTime/3.5)
+											+ delayProcess, MobileEvents.SET_MIG_STATUS_TRUE, st);
+										
+										
+										st.sethandoffTime((handoffTime + delayConnection)*3);
+									}
+								}
+								
+								//isHybrid_MIRROR_Post
+								
+								if (st.isHybrid_MIRROR_PostStatus() && !st.isMigStatus()) {
+									if (!st.isMigStatusLive()) {
+										st.setMigStatusLive(true);
+										double newMigTime = migrationTimeToLiveMigration(st);
+										if (newMigTime == 0) {
+											newMigTime = ((st.getVmMobileDevice().getHost()
+												.getRamProvisioner().getUsedRam() * 8 * 1024 * 1024) / st
+												.getVmLocalServerCloudlet().getUplinkBandwidth()) * 1000.0;
+										}
+										double delayProcess = st.getVmLocalServerCloudlet()
+											.getCharacteristics().getCpuTime((st.getVmMobileDevice()
+												.getSize() * 1024 * 1024 * 8) * 0.7, 0.0);// the connection already opened
+										st.setTimeFinishDeliveryVm(-1.0);
+										MyStatistics.getInstance().startWithoutVmTime(
+											st.getMyId(),CloudSim.clock());
+										send(st.getVmLocalServerCloudlet().getId(), (newMigTime/3.5)
+											+ delayProcess, MobileEvents.SET_MIG_STATUS_TRUE, st);
+										
+										
+										st.sethandoffTime((handoffTime + delayConnection)*3);
+									}
+								}
 							}
 
 							send(st.getSourceAp().getId(), handoffTime, MobileEvents.START_HANDOFF,st);
@@ -961,6 +1011,12 @@ public class MobileController extends SimEntity {
 		case 4 :
 			policyName="LIVE_MIGRATION_MIRROR";
 			break;	
+		case 6 :
+			policyName="Hybrid_Pre_Post";	
+			break;		
+		case 7 :
+			policyName="Hybrid_MIRROR_Post";
+			break;	
 		default:
 			policyName="Not Set";
 			break;	
@@ -1355,7 +1411,44 @@ public class MobileController extends SimEntity {
 			
 			TupleDelayOverload=0.95 + (TupleDelayX* (double)TupleDelayY);
 			
+			break;
+		case 6 :
+			policyName="Hybrid_Pre_Post";
+			
+			 x =x % 0.15;
+			
+			if (y==0) {
+				y=1;
+			}else
+			{
+				y=-1;
+			}
+			
+			tupleLostOverload=2.4854  + (x* (double)y);
+
+			
+			TupleDelayOverload=0.95 + (TupleDelayX* (double)TupleDelayY);
+			
 			break;	
+		case 7 :
+			policyName="Hybrid_MIRROR_Post";
+			
+			 x =x % 0.15;
+			
+			if (y==0) {
+				y=1;
+			}else
+			{
+				y=-1;
+			}
+			
+			tupleLostOverload=2.4854  + (x* (double)y);
+
+			
+			TupleDelayOverload=0.95 + (TupleDelayX* (double)TupleDelayY);
+			
+			break;	
+			
 		default:
 			policyName="Not Set";
 			break;	

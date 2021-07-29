@@ -53,6 +53,8 @@ public class MobileDevice extends FogDevice {
 	
 	private boolean preCopyStatus;
 	private boolean mirrorStatus;
+	private boolean hybrid_Pre_PostStatus;
+	private boolean hybrid_MIRROR_PostStatus;
 	private boolean handoffStatus;
 	private boolean lockedToHandoff;
 	private boolean lockedToMigration;
@@ -114,6 +116,8 @@ public class MobileDevice extends FogDevice {
 		setPostCopy_JustHandOFFStatus(false);
 		setPreCopyStatus(false);
 		setMirrorStatus(false);
+		setHybrid_Pre_PostStatus(false);
+		setHybrid_MIRROR_PostStatus(false);
 		setHandoffStatus(false);
 		setLockedToHandoff(false);
 		setLockedToMigration(false);
@@ -146,6 +150,8 @@ public class MobileDevice extends FogDevice {
 		setPostCopy_JustHandOFFStatus(false);
 		setPreCopyStatus(false);
 		setMirrorStatus(false);
+		setHybrid_Pre_PostStatus(false);
+		setHybrid_MIRROR_PostStatus(false);
 
 		setHandoffStatus(false);
 		setLockedToHandoff(false);
@@ -188,6 +194,8 @@ public class MobileDevice extends FogDevice {
 		setPostCopy_JustHandOFFStatus(false);
 		setPreCopyStatus(false);
 		setMirrorStatus(false);
+		setHybrid_Pre_PostStatus(false);
+		setHybrid_MIRROR_PostStatus(false);
 		setVmSize(vmSize);
 		setHandoffStatus(false);
 		setLockedToHandoff(false);
@@ -677,6 +685,23 @@ public class MobileDevice extends FogDevice {
 	public void setMirrorStatus(boolean mirrorStatus) {
 		this.mirrorStatus = mirrorStatus;
 	}
+	
+	public boolean isHybrid_Pre_PostStatus() {
+		return hybrid_Pre_PostStatus;
+	}
+
+	public void setHybrid_Pre_PostStatus(boolean mirrorStatus) {
+		this.hybrid_Pre_PostStatus = mirrorStatus;
+	}
+	
+	public boolean isHybrid_MIRROR_PostStatus() {
+		return hybrid_MIRROR_PostStatus;
+	}
+
+	public void setHybrid_MIRROR_PostStatus(boolean mirrorStatus) {
+		this.hybrid_MIRROR_PostStatus = mirrorStatus;
+	}
+	
 	public double getTimeStartLiveMigration() {
 		return timeStartLiveMigration;
 	}

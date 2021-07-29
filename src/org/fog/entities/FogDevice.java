@@ -717,6 +717,8 @@ public class FogDevice extends PowerDatacenter {
 			smartThing.setPostCopy_JustHandOFFStatus(false);
 			smartThing.setPreCopyStatus(false);
 			smartThing.setMirrorStatus(false);
+			smartThing.setHybrid_Pre_PostStatus(false);
+			smartThing.setHybrid_MIRROR_PostStatus(false);
 			smartThing.setMigStatusLive(false);
 			if (MyStatistics.getInstance().getInitialWithoutVmTime().get(smartThing.getMyId()) != null) {
 				MyStatistics.getInstance().finalWithoutVmTime(smartThing.getMyId(), CloudSim.clock());
@@ -753,6 +755,8 @@ public class FogDevice extends PowerDatacenter {
 		smartThing.setPostCopy_JustHandOFFStatus(false);
 		smartThing.setPreCopyStatus(false);
 		smartThing.setMirrorStatus(false);
+		smartThing.setHybrid_Pre_PostStatus(false);
+		smartThing.setHybrid_MIRROR_PostStatus(false);
 		smartThing.setMigStatusLive(false);
 		smartThing.setLockedToMigration(false);
 		smartThing.setTimeFinishDeliveryVm(-1.0);
@@ -878,6 +882,8 @@ public class FogDevice extends PowerDatacenter {
 				smartThing.setPostCopyStatus(false);
 				smartThing.setPreCopyStatus(false);
 				smartThing.setMirrorStatus(false);
+				smartThing.setHybrid_Pre_PostStatus(false);
+				smartThing.setHybrid_MIRROR_PostStatus(false);
 				smartThing.setMigStatusLive(false);
 				if (MyStatistics.getInstance().getInitialWithoutVmTime().get(smartThing.getMyId()) != null) {
 					MyStatistics.getInstance().finalWithoutVmTime(smartThing.getMyId(), CloudSim.clock());
@@ -1006,6 +1012,16 @@ public class FogDevice extends PowerDatacenter {
 
 					else if (getPolicyReplicaVM() == Policies.LIVE_MIGRATION_MIRROR) {
 						smartThing.setMirrorStatus(true);
+						smartThing.setTimeStartLiveMigration(CloudSim.clock());
+					}
+
+					else if (getPolicyReplicaVM() == Policies.Hybrid_Pre_Post) {
+						smartThing.setHybrid_Pre_PostStatus(true);
+						smartThing.setTimeStartLiveMigration(CloudSim.clock());
+					}
+
+					else if (getPolicyReplicaVM() == Policies.Hybrid_MIRROR_Post) {
+						smartThing.setHybrid_MIRROR_PostStatus(true);
 						smartThing.setTimeStartLiveMigration(CloudSim.clock());
 					}
 					else {
@@ -1146,6 +1162,22 @@ public class FogDevice extends PowerDatacenter {
 			
 			Overload=1.1745 + (x* (double)y);;
 			break;	
+		case 6 :
+			policyName="Hybrid_Pre_Post";
+			
+			x=AppExample.getRand().nextDouble()% 0.152685;
+			
+			
+			Overload=1.1845 + (x* (double)y);;
+			break;		
+		case 7 :
+			policyName="Hybrid_MIRROR_Post";
+			
+			x=AppExample.getRand().nextDouble()% 0.152685;
+			
+			
+			Overload=1.1845 + (x* (double)y);;
+			break;
 		default:
 			policyName="Not Set";
 			break;	

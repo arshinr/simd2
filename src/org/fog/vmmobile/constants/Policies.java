@@ -15,6 +15,8 @@ public class Policies {
 	public static final int LIVE_MIGRATION_JustHandOFF = 5;
 	public static final int LIVE_MIGRATION_PRECOPY = 3;
 	public static final int LIVE_MIGRATION_MIRROR = 4;
+	public static final int Hybrid_Pre_Post = 6;
+	public static final int Hybrid_MIRROR_Post = 7;
 	public static final int ADD = 0;
 	public static final int REMOVE = 1;
 	public static final int FIXED_SC_LOCATION = 0;

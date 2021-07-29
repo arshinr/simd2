@@ -39,7 +39,7 @@ In src/org/fog/vmmobile/AppExample.java, run as -> Java application
 *  Fourth parameter: 0/1/2 -> Migration strategy approach to select the destination Cloudlet. It can be based on the lowest latency (0), the lowest distance between the user and cloudlet (1), or the lowest distance between the user and Access Point (2)
 *  Fifth parameter: Positive Integer -> Number of users
 *  Sixth parameter: Positive Integer -> Base Network Bandwidth between cloudlets
-*  Seventh parameter: 0/1/2/3/4/5 -> Migration policy based on Complete VM/Cold migration (0), Complete Container migration (1), Container Live Migration (Post-copy)(2), Pre-copy (3), MiGrror (4), Post-copy (Just Hand-off) (5)
+*  Seventh parameter: 0/1/2/3/4/5 -> Migration policy based on Complete VM/Cold migration (0), Complete Container migration (1), Container Live Migration (Post-copy)(2), Pre-copy (3), MiGrror (4), Post-copy (Just Hand-off) (5), Hybrid (pre-post) (6), Hybrid (MiGrror-post) (7)
 *  Eighth parameter: Non-Negative Integer -> User Mobility prediction, in seconds
 *  Ninth parameter: Non-Negative Integer -> User Mobility prediction inaccuracy, in meters
 *  Tenth parameter: Positive negative Integer -> Base Network Latency between cloudlets
