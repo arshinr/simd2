@@ -56,6 +56,8 @@ import org.fog.vmmigration.LiveMigration;
 import org.fog.vmmigration.LiveMigrationMirror;
 import org.fog.vmmigration.LiveMigrationPrecopy;
 import org.fog.vmmigration.LiveMigration_JustHandOFF;
+import org.fog.vmmigration.MigrationHybrid_MIRROR_Post;
+import org.fog.vmmigration.MigrationHybrid_Pre_Post;
 import org.fog.vmmigration.MyStatistics;
 import org.fog.vmmigration.Service;
 import org.fog.vmmobile.AppExample;
@@ -960,6 +962,14 @@ public class FogDevice extends PowerDatacenter {
 				
 			}
 			else if (smartThing.getMigrationTechnique() instanceof LiveMigrationMirror) {
+				MyStatistics.getInstance().historyDowntime(smartThing.getMyId(),
+					smartThing.gethandoffTime());
+			}
+			else if (smartThing.getMigrationTechnique() instanceof MigrationHybrid_Pre_Post) {
+				MyStatistics.getInstance().historyDowntime(smartThing.getMyId(),
+					smartThing.gethandoffTime());
+			}
+			else if (smartThing.getMigrationTechnique() instanceof MigrationHybrid_MIRROR_Post) {
 				MyStatistics.getInstance().historyDowntime(smartThing.getMyId(),
 					smartThing.gethandoffTime());
 			}
