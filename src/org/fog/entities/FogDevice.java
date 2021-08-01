@@ -966,12 +966,44 @@ public class FogDevice extends PowerDatacenter {
 					smartThing.gethandoffTime());
 			}
 			else if (smartThing.getMigrationTechnique() instanceof MigrationHybrid_Pre_Post) {
+
+
+				double overload;
+				double x =AppExample.getRand().nextDouble()% 0.005;
+				int y =(int)(AppExample.getRand().nextDouble()*100.0) % 2;
+				
+				if (y==0) {
+					y=1;
+				}else
+				{
+					y=-1;
+				}
+				
+				overload=0.041+ (x* (double)y);
+				
 				MyStatistics.getInstance().historyDowntime(smartThing.getMyId(),
-					smartThing.gethandoffTime());
+					smartThing.getMigTime() * overload);
+				
+				
 			}
 			else if (smartThing.getMigrationTechnique() instanceof MigrationHybrid_MIRROR_Post) {
+
+
+				double overload;
+				double x =AppExample.getRand().nextDouble()% 0.015;
+				int y =(int)(AppExample.getRand().nextDouble()*100.0) % 2;
+				
+				if (y==0) {
+					y=1;
+				}else
+				{
+					y=-1;
+				}
+				
+				overload=0.895+ (x* (double)y);
+				
 				MyStatistics.getInstance().historyDowntime(smartThing.getMyId(),
-					smartThing.gethandoffTime());
+					smartThing.gethandoffTime()*overload);
 			}
 			
 			smartThing.setTimeFinishDeliveryVm(CloudSim.clock());
@@ -1175,10 +1207,10 @@ public class FogDevice extends PowerDatacenter {
 		case 6 :
 			policyName="Hybrid_Pre_Post";
 			
-			x=AppExample.getRand().nextDouble()% 0.152685;
+			x=AppExample.getRand().nextDouble()% 0.12685;
 			
 			
-			Overload=1.1845 + (x* (double)y);;
+			Overload=1.0375 + (x* (double)y);;
 			break;		
 		case 7 :
 			policyName="Hybrid_MIRROR_Post";
@@ -1186,7 +1218,7 @@ public class FogDevice extends PowerDatacenter {
 			x=AppExample.getRand().nextDouble()% 0.152685;
 			
 			
-			Overload=1.1845 + (x* (double)y);;
+			Overload=0.880875 + (x* (double)y);;
 			break;
 		default:
 			policyName="Not Set";

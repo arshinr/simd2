@@ -1415,7 +1415,7 @@ public class MobileController extends SimEntity {
 		case 6 :
 			policyName="Hybrid_Pre_Post";
 			
-			 x =x % 0.15;
+			 x =x % 0.25;
 			
 			if (y==0) {
 				y=1;
@@ -1424,10 +1424,7 @@ public class MobileController extends SimEntity {
 				y=-1;
 			}
 			
-			tupleLostOverload=2.4854  + (x* (double)y);
-
-			
-			TupleDelayOverload=0.95 + (TupleDelayX* (double)TupleDelayY);
+			tupleLostOverload=7.8629+ (x* (double)y);
 			
 			break;	
 		case 7 :
@@ -1442,12 +1439,13 @@ public class MobileController extends SimEntity {
 				y=-1;
 			}
 			
-			tupleLostOverload=2.4854  + (x* (double)y);
+			tupleLostOverload=((2.4854)*(0.895))  + (x* (double)y);
 
 			
-			TupleDelayOverload=0.95 + (TupleDelayX* (double)TupleDelayY);
+			TupleDelayOverload=(0.95*(0.895)) + (TupleDelayX* (double)TupleDelayY);
 			
-			break;	
+			break;
+				
 			
 		default:
 			policyName="Not Set";
