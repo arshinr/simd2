@@ -110,6 +110,13 @@ public class AppExample {
 	private static long PeriodicTimeDown=2439;
 	private static long MaxVMSizeVar=128;
 	private static long MinVMSizeVar=128;
+	private static long AccessPointUpLinkBandwidth=100;
+	private static long AccessPointDownLinkBandwidth=100;
+	private static long MobileDeviceUpLinkBandwidth=2;
+	private static long MobileDeviceDownLinkBandwidth=1;
+	private static long AppModuleBandWidth=1000;
+	
+	
 	private static String SimulationParams="";
 	private static String SimulationParamsName="";
 	
@@ -154,7 +161,20 @@ public class AppExample {
 		 *  Eighth parameter: Non Negative Integer -> User Mobility prediction, in seconds
 		 *  Ninth parameter: Non Negative Integer -> User Mobility prediction inaccuracy, in meters
 		 *  Tenth parameter: Positive negative Integer -> Base Network Latency between cloudlets
+		 *  11th parameter: PeriodicTimeUp
+		 *  12th parameter: PeriodicTimeDown
+		 *  13th parameter: MinVMSize
+		 *  14th parameter: MaxVMSize
+		 *  15th parameter: AccessPointDownLinkBandwidth
+		 *  16th parameter: AccessPointUpLinkBandwidth
+		 *  17th parameter: MobileDeviceDownLinkBandwidth
+		 *  18th parameter: MobileDeviceUpLinkBandwidth
+		 *  19th parameter: AppModuleBandWidth
+		 *  
+		 *  
+		 *  
 		 */
+		
 
 		Log.disable();
 
@@ -208,6 +228,16 @@ public class AppExample {
 		
 		setMinVMSize(Long.parseLong( args[12]));
 		setMaxVMSize(Long.parseLong( args[13]));
+
+		setAccessPointDownLinkBandwidth(Long.parseLong( args[14]));
+		setAccessPointUpLinkBandwidth(Long.parseLong( args[15]));
+		
+		setMobileDeviceDownLinkBandwidth(Long.parseLong( args[16]));
+		setMobileDeviceUpLinkBandwidth(Long.parseLong( args[17]));
+		
+		setAppModuleBandWidth(Long.parseLong( args[18]));
+		
+		
 		
 		
 		/**
@@ -308,7 +338,7 @@ public class AppExample {
 					, getBrokerList().get(st.getMyId()).getId() // userId
 					, 281 // mips
 					, 128 // (int) sizeVm/3 //ram
-					, 1000 // bw
+					, getAppModuleBandWidth() // bw 1000
 					, sizeVm, "Vm_" + st.getName() // vmm
 					, cloudletScheduler,
 					new HashMap<Pair<String, String>, SelectivityModel>());
@@ -654,10 +684,10 @@ public class AppExample {
 
 				ApDevice ap = new ApDevice("AccessPoint" + Integer.toString(i), // name
 					coordX, coordY, i// ap.set//id
-					, 100 * 1024 * 1024// downLinkBandwidth - 100Mbits
+					, getAccessPointDownLinkBandwidth() * 1024 * 1024// downLinkBandwidth - 100Mbits
 					, 200// engergyConsuption
 					, MaxAndMin.MAX_ST_IN_AP// maxSmartThing
-					, 100 * 1024 * 1024// upLinkBandwidth - 100Mbits
+					, getAccessPointUpLinkBandwidth() * 1024 * 1024// upLinkBandwidth - 100Mbits
 					, 4// upLinkLatency
 				);
 				apDevices.add(i, ap);
@@ -674,10 +704,10 @@ public class AppExample {
 		coordY = getRand().nextInt(MaxAndMin.MAX_Y);
 		ApDevice ap = new ApDevice("AccessPoint" + Integer.toString(i), // name
 			coordX, coordY, i// id
-			, 100 * 1024 * 1024// downLinkBandwidth - 100 Mbits
+			, getAccessPointDownLinkBandwidth() * 1024 * 1024// downLinkBandwidth - 100 Mbits
 			, 200// engergyConsuption
 			, MaxAndMin.MAX_ST_IN_AP// maxSmartThing
-			, 100 * 1024 * 1024// upLinkBandwidth 100 Mbits
+			, getAccessPointUpLinkBandwidth() * 1024 * 1024// upLinkBandwidth 100 Mbits
 			, 4// upLinkLatency
 		);
 		apDevices.add(i, ap);
@@ -786,8 +816,8 @@ public class AppExample {
 			st = new MobileDevice("SmartThing" + Integer.toString(i),
 				characteristics, vmAllocationPolicy
 				, storageList, 2// schedulingInterval
-				, 1 * 1024 * 1024// uplinkBandwidth - 1 Mbit
-				, 2 * 1024 * 1024// downlinkBandwidth - 2 Mbits
+				, getMobileDeviceUpLinkBandwidth() * 1024 * 1024// uplinkBandwidth - 1 Mbit
+				, getMobileDeviceDownLinkBandwidth() * 1024 * 1024// downlinkBandwidth - 2 Mbits
 				, 2// uplinkLatency
 				, 0.01// mipsPer..
 				, coordX, coordY, i// id
@@ -1484,7 +1514,8 @@ public class AppExample {
 	public static void setPeriodicTimeDown(long PeriodicTime) {
 		AppExample.PeriodicTimeDown = PeriodicTime;
 	}
-
+	
+	
 	public static long getMaxVMSize() {
 		//return MaxVMSizeVar;
 		return MaxAndMin.MAX_VM_SIZE;
@@ -1505,8 +1536,52 @@ public class AppExample {
 		MaxAndMin.MAX_VM_SIZE=(int)VmSize;
 		AppExample.MinVMSizeVar = VmSize;
 	}
+
+
+	public static long getAccessPointUpLinkBandwidth() {
+		return AccessPointUpLinkBandwidth;
+	}
+
+	public static void setAccessPointUpLinkBandwidth(long Bandwidth) {
+		AppExample.AccessPointUpLinkBandwidth = Bandwidth;
+	}
+
+
+	public static long getAccessPointDownLinkBandwidth() {
+		return AccessPointDownLinkBandwidth;
+	}
+
+	public static void setAccessPointDownLinkBandwidth(long Bandwidth) {
+		AppExample.AccessPointDownLinkBandwidth = Bandwidth;
+	}
 	
 
+	public static long getMobileDeviceDownLinkBandwidth() {
+		return MobileDeviceDownLinkBandwidth;
+	}
+
+	public static void setMobileDeviceDownLinkBandwidth(long Bandwidth) {
+		AppExample.MobileDeviceDownLinkBandwidth = Bandwidth;
+	}
+	
+
+	public static long getMobileDeviceUpLinkBandwidth() {
+		return MobileDeviceUpLinkBandwidth;
+	}
+
+	public static void setMobileDeviceUpLinkBandwidth(long Bandwidth) {
+		AppExample.MobileDeviceUpLinkBandwidth = Bandwidth;
+	}
+	
+
+	public static long getAppModuleBandWidth() {
+		return AppModuleBandWidth;
+	}
+
+	public static void setAppModuleBandWidth(long Bandwidth) {
+		AppExample.AppModuleBandWidth = Bandwidth;
+	}
+	
 	public static String getSimulationParams() {
 		return SimulationParams;
 	}

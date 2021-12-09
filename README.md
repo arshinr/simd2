@@ -33,23 +33,27 @@ In src/org/fog/vmmobile/AppExample.java, run as -> Java application
 
 ## Parameters
 
-*  First parameter: 0/1 -> migration processes are denied or allowed
+*  First parameter: 0/1 -> migrations are denied or allowed
 *  Second parameter: Positive Integer -> seed to be used in the random numbers generation
 *  Third parameter: 0/1 -> Migration point approach is fixed (0) or based on the user speed (1)
-*  Fourth parameter: 0/1/2 -> Migration strategy approach to select the destination Cloudlet. It can be based on the lowest latency (0), the lowest distance between the user and cloudlet (1), or the lowest distance between the user and Access Point (2)
+*  Fourth parameter: 0/1/2 -> Migration strategy approach is based on the lowest latency (0), lowest distance between the user and cloudlet (1), or lowest distance between user and Access Point (2)
 *  Fifth parameter: Positive Integer -> Number of users
 *  Sixth parameter: Positive Integer -> Base Network Bandwidth between cloudlets
-*  Seventh parameter: 0/1/2/3/4/5 -> Migration policy based on Complete VM/Cold migration (0), Complete Container migration (1), Container Live Migration (Post-copy)(2), Pre-copy (3), MiGrror (4), Post-copy (Just Hand-off) (5), Hybrid (pre-post) (6), Hybrid (MiGrror-post) (7)
-*  Eighth parameter: Non-Negative Integer -> User Mobility prediction, in seconds
-*  Ninth parameter: Non-Negative Integer -> User Mobility prediction inaccuracy, in meters
+*  Seventh parameter: 0/1/2 -> Migration policy based on Complete VM/Cold migration (0), Complete Container migration (1), or Container Live Migration (3)
+*  Eighth parameter: Non Negative Integer -> User Mobility prediction, in seconds
+*  Ninth parameter: Non Negative Integer -> User Mobility prediction inaccuracy, in meters
 *  Tenth parameter: Positive negative Integer -> Base Network Latency between cloudlets
-*  Eleventh parameter: getPeriodicTimeUp
-*  Twelfth parameter: getPeriodicTimeDown
-*  thirteenth: min VMsize
-*  fourteenth: max VMsize
-
+*  11th parameter: PeriodicTimeUp
+*  12th parameter: PeriodicTimeDown
+*  13th parameter: MinVMSize
+*  14th parameter: MaxVMSize
+*  15th parameter: AccessPointDownLinkBandwidth
+*  16th parameter: AccessPointUpLinkBandwidth
+*  17th parameter: MobileDeviceDownLinkBandwidth
+*  18th parameter: MobileDeviceUpLinkBandwidth
+*  19th parameter: AppModuleBandWidth
 Example
-1 290538 0 0 1 11 0 0 0 61 1000 2439 128 128
+1 290538 0 0 9 11 2 0 0 61 1000 2439 128 128 100 100 1 2 1000
 
 
 ## Input
