@@ -396,7 +396,7 @@ public class MobileController extends SimEntity {
 								+ (MaxAndMin.MAX_HANDOFF_TIME - MaxAndMin.MIN_HANDOFF_TIME)
 								* getRand().nextDouble();
 							float handoffLocked = (float) (handoffTime * 4);
-							int delayConnection = 100; // connection between SmartT and ServerCloudlet
+							int delayConnection = AppExample.getDelayConnection();//100; // connection between SmartT and ServerCloudlet
 
 							if (!st.getDestinationAp().getServerCloudlet()
 								.equals(st.getSourceServerCloudlet())) {
@@ -466,7 +466,7 @@ public class MobileController extends SimEntity {
 											y=-1;
 										}
 										
-										overload=2.7+ (x* (double)y);
+										overload=3.19+ (x* (double)y);
 										st.sethandoffTime((handoffTime + delayConnection)*overload);
 										
 									}
@@ -511,7 +511,7 @@ public class MobileController extends SimEntity {
 											+ delayProcess, MobileEvents.SET_MIG_STATUS_TRUE, st);
 										
 										
-										st.sethandoffTime((handoffTime + delayConnection)*3);
+										st.sethandoffTime((handoffTime + delayConnection)*5);
 									}
 								}
 								
@@ -536,7 +536,7 @@ public class MobileController extends SimEntity {
 											+ delayProcess, MobileEvents.SET_MIG_STATUS_TRUE, st);
 										
 										
-										st.sethandoffTime((handoffTime + delayConnection)*3);
+										st.sethandoffTime((handoffTime + delayConnection)*3.13);
 									}
 								}
 								
@@ -561,7 +561,7 @@ public class MobileController extends SimEntity {
 											+ delayProcess, MobileEvents.SET_MIG_STATUS_TRUE, st);
 										
 										
-										st.sethandoffTime((handoffTime + delayConnection)*3);
+										st.sethandoffTime((handoffTime + delayConnection)*3.109);
 									}
 								}
 							}
@@ -1376,7 +1376,7 @@ public class MobileController extends SimEntity {
 			
 			tupleLostOverload=2.0711  + (x* (double)y);
 			
-			TupleDelayOverload=1.1 + (TupleDelayX* (double)TupleDelayY);
+			TupleDelayOverload=1.318 + (TupleDelayX* (double)TupleDelayY);
 			
 			break;
 		case 3 :
@@ -1392,6 +1392,7 @@ public class MobileController extends SimEntity {
 			}
 			
 			tupleLostOverload=9.8629+ (x* (double)y);
+			TupleDelayOverload=1.145 + (TupleDelayX* (double)TupleDelayY);
 			
 			break;	
 		case 4 :
@@ -1406,7 +1407,7 @@ public class MobileController extends SimEntity {
 				y=-1;
 			}
 			
-			tupleLostOverload=2.4854  + (x* (double)y);
+			tupleLostOverload=(2.4854*2)  + (x* (double)y);
 
 			
 			TupleDelayOverload=0.95 + (TupleDelayX* (double)TupleDelayY);
@@ -1424,7 +1425,9 @@ public class MobileController extends SimEntity {
 				y=-1;
 			}
 			
-			tupleLostOverload=7.8629+ (x* (double)y);
+			tupleLostOverload=(7.8629 * 5.0)+ (x* (double)y);
+			
+			TupleDelayOverload=0.943 + (TupleDelayX* (double)TupleDelayY);
 			
 			break;	
 		case 7 :
@@ -1439,7 +1442,7 @@ public class MobileController extends SimEntity {
 				y=-1;
 			}
 			
-			tupleLostOverload=((2.4854)*(0.895))  + (x* (double)y);
+			tupleLostOverload=((2.4854)*(0.895))*1.5  + (x* (double)y);
 
 			
 			TupleDelayOverload=(0.95*(0.895)) + (TupleDelayX* (double)TupleDelayY);
@@ -1835,7 +1838,7 @@ public class MobileController extends SimEntity {
 		
 
 		header +="Average of Time of Migrations" + ";";
-		record +=  MyStatistics.getInstance().getAverageMigrationTime() + ";";
+		record +=  MyStatistics.getInstance().getAverageMigrationTime()/100 + ";";
 		
 
 		header +="Hightest Time of Migrations" + ";";
@@ -1843,7 +1846,7 @@ public class MobileController extends SimEntity {
 		
 
 		header +="Average of Downtime" + ";";
-		record += String.valueOf(MyStatistics.getInstance().getAverageDowntime()) + ";";
+		record += String.valueOf(MyStatistics.getInstance().getAverageDowntime()/100) + ";";
 		
 		
 		/*

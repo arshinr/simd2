@@ -46,7 +46,7 @@ public class LiveMigration_JustHandOFF implements VmMigrationTechnique {
 			y=-1;
 		}
 		
-		overload=1.3+ (x* (double)y);
+		overload=1.203+ (x* (double)y);
 		
 		
 		double distance = Distances.checkDistance(smartThing.getSourceAp().getCoord(),

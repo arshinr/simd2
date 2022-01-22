@@ -46,7 +46,7 @@ public class MigrationHybrid_MIRROR_Post implements VmMigrationTechnique {
 			y=-1;
 		}
 		
-		overload=2.0+ (x* (double)y);
+		overload=1.405+ (x* (double)y);
 		
 		
 		double distance = Distances.checkDistance(smartThing.getSourceAp().getCoord(),

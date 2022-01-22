@@ -955,7 +955,7 @@ public class FogDevice extends PowerDatacenter {
 					y=-1;
 				}
 				
-				overload=0.05+ (x* (double)y);
+				overload=0.0987+ (x* (double)y);
 				
 				MyStatistics.getInstance().historyDowntime(smartThing.getMyId(),
 					smartThing.getMigTime() * overload);
@@ -979,7 +979,7 @@ public class FogDevice extends PowerDatacenter {
 					y=-1;
 				}
 				
-				overload=0.041+ (x* (double)y);
+				overload=0.0304+ (x* (double)y);
 				
 				MyStatistics.getInstance().historyDowntime(smartThing.getMyId(),
 					smartThing.getMigTime() * overload);
@@ -990,7 +990,7 @@ public class FogDevice extends PowerDatacenter {
 
 
 				double overload;
-				double x =AppExample.getRand().nextDouble()% 0.015;
+				double x =AppExample.getRand().nextDouble()% 0.0651;
 				int y =(int)(AppExample.getRand().nextDouble()*100.0) % 2;
 				
 				if (y==0) {
@@ -1000,7 +1000,7 @@ public class FogDevice extends PowerDatacenter {
 					y=-1;
 				}
 				
-				overload=0.895+ (x* (double)y);
+				overload=1.0 + (x* (double)y);
 				
 				MyStatistics.getInstance().historyDowntime(smartThing.getMyId(),
 					smartThing.gethandoffTime()*overload);

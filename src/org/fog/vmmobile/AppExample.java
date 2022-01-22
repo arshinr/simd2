@@ -115,6 +115,7 @@ public class AppExample {
 	private static long MobileDeviceUpLinkBandwidth=2;
 	private static long MobileDeviceDownLinkBandwidth=1;
 	private static long AppModuleBandWidth=1000;
+	private static int delayConnection=100;
 	
 	
 	private static String SimulationParams="";
@@ -149,7 +150,7 @@ public class AppExample {
 		 *  
 		 *  Example parameters
 		 *  
-		 *  1 290538 0 0 1 11 0 0 0 61
+		 *  1 290538 0 0 1 11 2 0 0 61 1000 2439 128 128 100 100 1 2 1000 100
 		 *  
 		 *  First parameter: 0/1 -> migrations are denied or allowed
 		 *  Second parameter: Positive Integer -> seed to be used in the random numbers generation
@@ -170,6 +171,7 @@ public class AppExample {
 		 *  17th parameter: MobileDeviceDownLinkBandwidth
 		 *  18th parameter: MobileDeviceUpLinkBandwidth
 		 *  19th parameter: AppModuleBandWidth
+		 *  20th parameter: DelayConnection= connection between SmartT and ServerCloudlet
 		 *  
 		 *  
 		 *  
@@ -236,7 +238,8 @@ public class AppExample {
 		setMobileDeviceUpLinkBandwidth(Long.parseLong( args[17]));
 		
 		setAppModuleBandWidth(Long.parseLong( args[18]));
-		
+
+		setDelayConnection(Integer.parseInt( args[19]));
 		
 		
 		
@@ -1581,6 +1584,16 @@ public class AppExample {
 	public static void setAppModuleBandWidth(long Bandwidth) {
 		AppExample.AppModuleBandWidth = Bandwidth;
 	}
+	
+	
+	public static int getDelayConnection() {
+		return AppExample.delayConnection;
+	}
+	
+	public static void setDelayConnection(int delayConnection) {
+		AppExample.delayConnection=delayConnection;
+	}
+	
 	
 	public static String getSimulationParams() {
 		return SimulationParams;

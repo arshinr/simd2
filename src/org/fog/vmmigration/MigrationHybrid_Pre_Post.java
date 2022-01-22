@@ -46,7 +46,7 @@ public class MigrationHybrid_Pre_Post implements VmMigrationTechnique {
 			y=-1;
 		}
 		
-		overload=2.0+ (x* (double)y);
+		overload=1.458+ (x* (double)y);
 		
 		
 		double distance = Distances.checkDistance(smartThing.getSourceAp().getCoord(),

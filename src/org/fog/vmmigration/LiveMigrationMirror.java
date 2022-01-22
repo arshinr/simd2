@@ -46,7 +46,7 @@ public class LiveMigrationMirror implements VmMigrationTechnique {
 			y=-1;
 		}
 		
-		overload=2.6+ (x* (double)y);
+		overload=1.296+ (x* (double)y);
 		
 		
 		double distance = Distances.checkDistance(smartThing.getSourceAp().getCoord(),
