@@ -54,7 +54,7 @@ In src/org/fog/vmmobile/AppExample.java, run as -> Java application
 *  19th parameter: AppModuleBandWidth
 *  20th parameter: DelayConnection
 Example
-1 290538 0 0 9 11 2 0 0 61 1000 2439 128 128 100 100 1 2 1000 100
+1 290538 0 0 9 11 2 0 0 61 1000 2439 128 128 100 100 1 2 1000
 
 
 ## Input
