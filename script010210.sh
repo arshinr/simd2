@@ -20,7 +20,7 @@ AccessPointUpLinkBandwidth=100
 MobileDeviceDownLinkBandwidth=2
 MobileDeviceUpLinkBandwidth=2
 AppModuleBandWidth=1000
-DelayConnection-100
+DelayConnection=100
 
 
 
